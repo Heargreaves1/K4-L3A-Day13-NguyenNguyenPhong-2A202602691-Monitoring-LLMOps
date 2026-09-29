@@ -1,0 +1,10 @@
+# Kết quả truy vấn Langfuse API (GET /api/public/v2/observations, fields=core,basic,metadata,prompt)
+# Project: day13-k4-l3a-2A202602691 — cùng input "What is the refund policy?", feature=qa
+
+correlation_id=req-b0000001  trace_id=3bca9d41720c24eaa66c7ded8b7c7ee1
+  lab-agent-run  metadata: prompt_name=day13-chat prompt_label=baseline  prompt_version=1 prompt_source=langfuse
+  llm-generation linked prompt: day13-chat v1
+
+correlation_id=req-c0000001  trace_id=77ca8fd1e679e0a573fd91ff2f29e994
+  lab-agent-run  metadata: prompt_name=day13-chat prompt_label=candidate prompt_version=2 prompt_source=langfuse
+  llm-generation linked prompt: day13-chat v2

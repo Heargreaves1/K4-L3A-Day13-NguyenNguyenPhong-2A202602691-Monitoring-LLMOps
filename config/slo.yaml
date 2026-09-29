@@ -7,7 +7,18 @@ primary_slo:
     total_event: 'event == "request_received"'
   target_percent: 99.5
   error_budget_percent: 0.5
-  note: Học viên phải giải thích hoặc điều chỉnh ngưỡng bằng baseline của mình.
+  # Baseline (load_test, concurrency 5, không incident): P50 ≈ 440 ms, P95 ≈ 2.5 s
+  # (chỉ request đầu tiên chậm do fetch prompt Langfuse khi cache nguội).
+  # Ngưỡng 3000 ms giữ khoảng ~6x headroom so với P50 nhưng vẫn bắt được
+  # sự cố retrieval chậm (rag_slow cộng thêm ~2.5 s mỗi request).
+  error_budget:
+    formula: 'budget_bad_events = (1 - target_percent/100) * total_events'
+    example: '10,000 request / 28 ngày -> được phép 50 request lỗi hoặc > 3000 ms'
+    burn_rate_policy:
+      fast_burn: 'burn rate >= 14.4 trong 1h (tiêu 2% budget/giờ) -> page P1'
+      slow_burn: 'burn rate >= 6 trong 6h -> ticket P2'
+    exhausted_action: 'Đóng băng thay đổi prompt/model, chỉ deploy fix độ tin cậy cho tới khi budget hồi phục.'
+  note: Ngưỡng chọn từ baseline thực tế đo trên máy học viên; xem submission/REPORT.md mục 6.
 guardrails:
   error_rate_pct_max: 2
   daily_cost_usd_max: 2.5

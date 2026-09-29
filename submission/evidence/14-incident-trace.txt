@@ -1,0 +1,10 @@
+# Trace của các request challenge (Langfuse API GET /api/public/v2/observations), latency theo giây
+# correlation_id  trace_id                          lab-agent-run  retrieval  llm-generation
+req-d82235fb      af76f0f590bc3aed93f004f8fbcdcf69  3.791          2.501      0.151   (+~1.1 s fetch prompt khi cache nguội)
+req-ba2d6a2a      447dd02ea20f31ab08a6847fa33f1343  2.652          2.501      0.150
+req-a6d2bf8b      e8ba040f9bd64afd37f4f99d45ba6fad  2.655          2.502      0.152   <- trace chính dùng trong report
+req-f4715ff9      02d14b622da62ee2242b9f3a44c6f595  2.653          2.501      0.151
+req-9328058f      d46534310458caa2949dd987fac05ed6  2.654          2.502      0.151
+
+# Baseline bình thường: lab-agent-run ~0.44 s, retrieval ~0 s, llm-generation ~0.15 s
+# Kết luận: retrieval chiếm ~94% thời gian request; llm-generation và TTFT (50 ms) không đổi.
