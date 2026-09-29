@@ -8,7 +8,7 @@
 - **MSSV:** 2A202602691
 - **Lớp:** K4-L3A
 - **Repository URL:** https://github.com/Heargreaves1/K4-L3A-Day13-NguyenNguyenPhong-2A202602691-Monitoring-LLMOps
-- **Commit SHA cuối:**
+- **Commit SHA cuối:** `634da07d5d16e4bac78ad573063e08e01c67b7ad` (commit bài làm; commit sau chỉ cập nhật dòng này)
 - **Challenge ID:** `day13-k4-l3a-monitoring-llmops-v1`
 - **Tên project Langfuse cá nhân:** `day13-k4-l3a-2A202602691`
 
